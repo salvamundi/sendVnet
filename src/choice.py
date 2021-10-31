@@ -1,11 +1,11 @@
 import handle_args as ha
+import sender
 
-args = ha.handle_args()
-if args.role == "sender":
-    x = 1
-elif args.role == "receiver":
-    x = 1
+opt = ha.handle_args()
+if opt.role == "sender":
+    sender(opt.receiver_ip, opt.receiver_port, opt.file_name, opt.role)
+elif opt.role == "receiver":
+    pass
 else:
     print("[!] Invalid argument value")
     exit()
-
