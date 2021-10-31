@@ -16,8 +16,8 @@ def handle_args():
     elif options.receiver_port is None:
         parser.error("[!] Set the port for the receiver!")
     elif options.file_name is None:
-        parser.error("[!] Don't forget about file name!")
+        parser.error("[!] Don't forget about file name!") #if role is receiver
     elif options.role is None:
-        parser.error("Don't forget about specifying if you are sending the file or receiving it")
+        parser.error("[!] Don't forget about specifying if you are sending the file or receiving it")
 
     return options
