@@ -19,7 +19,7 @@ def handle_args():
         if options.role == "receiver":
             pass
         else:
-            parser.error("[!] Don't forget about file name!")  # if role is receiver
+            parser.error("[!] Don't forget about file name!")  # if role is sender*. It must be sender actually, because  no other value, than this, is accepted
     elif options.role is None:
         parser.error("[!] Don't forget about specifying if you are sending the file or receiving it")
 
