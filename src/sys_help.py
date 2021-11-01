@@ -1,6 +1,6 @@
 import platform
 import os
-
+#at first sys_info.py, than changed to sys_help.py
 #returns os_name, os_ver
 def get_system_info():
     os_name = platform.system() #Windows
