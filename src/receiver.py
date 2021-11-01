@@ -29,16 +29,15 @@ def receiver(s_ip, s_pt):
         filename = os.path.basename(filename) #removing absolute path if any
         filesize = int(filesize)
 
-        progressBar = tqdm.tqdm(range(filesize), f"[*] Receiving {filename}", unit="B", unit_scale=True, unit_divisor=1024)
-
         with open(filename, "wb") as received_file:
+            progressBar = tqdm.tqdm(range(filesize), f"[*] Receiving {filename}", unit="B", unit_scale=True, unit_divisor=1024)
             while True:
                 read_bytes = client_socket.recv(BUFFER_SIZE)
                 if not read_bytes:
-                    print("[+] File received successfully")
                     break
                 received_file.write(read_bytes)
                 progressBar.update(len(read_bytes))
+                print("[+] File received successfully")
 
         client_socket.close()
         socket.close()
