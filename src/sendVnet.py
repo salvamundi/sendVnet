@@ -19,7 +19,7 @@ print("""
     !:!   :!:       :!:  !:!  :!:  !:!   ::!!:!   :!:  !:!  :!:         :!:    
 :::: ::    :: ::::   ::   ::   :::: ::    ::::     ::   ::   :: ::::     ::    
 :: : :    : :: ::   ::    :   :: :  :      :      ::    :   : :: ::      :     
-                                                                            v1.7.1
+                                                                            v1.7.1.1
 """)
 
 opt = ha.handle_args()
@@ -28,6 +28,6 @@ if opt.role == "sender":
         exit("[!] FUNC_ERR: Action not allowed!")
     sender(opt.receiver_ip, opt.receiver_port, opt.file_name)
 elif opt.role == "receiver":
-    receiver(opt.receiver_ip, opt.receiver_port)
+    receiver(opt.receiver_ip, opt.receiver_port, opt.ddir)
 else:
     print("[!] Invalid argument value (sender/receiver)")
