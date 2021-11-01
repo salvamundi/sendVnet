@@ -16,30 +16,29 @@ def receiver(s_ip, s_pt):
 
     print(f"[*] Listening on: {s_ip}:{s_pt}")
 
-    while True:
-        #receive file info
-        #use client_socket because data is sent from client since we are RECEIVING
-        try:
-            client_socket, address = socket.accept()
-            print(f"[+] {address[0]}:{address[1]} connected!")
-            received = client_socket.recv(BUFFER_SIZE).decode()
-        except OSError as er_msg:
-            print("[-] Unable to receive file")
-        else:
-            filename, filesize = received.split(SEPARATOR)
-            filename = os.path.basename(filename) #removing absolute path if any
-            filesize = int(filesize)
+    #receive file info
+    #use client_socket because data is sent from client since we are RECEIVING
+    try:
+        client_socket, address = socket.accept()
+        print(f"[+] {address[0]}:{address[1]} connected!")
+        received = client_socket.recv(BUFFER_SIZE).decode()
+    except OSError as er_msg:
+        print("[-] Unable to receive file")
+    else:
+        filename, filesize = received.split(SEPARATOR)
+        filename = os.path.basename(filename) #removing absolute path if any
+        filesize = int(filesize)
 
-            progressBar = tqdm.tqdm(range(filesize), f"[*] Receiving {filename}", unit="B", unit_scale=True, unit_divisor=1024)
+        progressBar = tqdm.tqdm(range(filesize), f"[*] Receiving {filename}", unit="B", unit_scale=True, unit_divisor=1024)
 
-            with open(filename, "wb") as received_file:
-                while True:
-                    read_bytes = client_socket.recv(BUFFER_SIZE)
-                    if not read_bytes:
-                        print("[+] File received successfully")
-                        break
-                    received_file.write(read_bytes)
-                    progressBar.update(len(read_bytes))
+        with open(filename, "wb") as received_file:
+            while True:
+                read_bytes = client_socket.recv(BUFFER_SIZE)
+                if not read_bytes:
+                    print("[+] File received successfully")
+                    break
+                received_file.write(read_bytes)
+                progressBar.update(len(read_bytes))
 
-            client_socket.close()
-            socket.close()
+        client_socket.close()
+        socket.close()
