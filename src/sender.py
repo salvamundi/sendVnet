@@ -26,14 +26,16 @@ def sender(r_ip, r_pt, file_name):
         print(f"[-] Could not open neither read the file: {er_msg}")
         exit()
     else:
+        progressBar = tqdm.tqdm(range(file_name_size), f"[*] Sending {file_name}", unit="B", unit_scale=True,
+                                unit_divisor=1024)
+
         with opened_file:
-            progressBar = tqdm.tqdm(range(file_name_size), f"[*] Sending {file_name}", unit="B", unit_scale=True, unit_divisor=1024)
             while True:
                 read_bytes = opened_file.read(BUFFER_SIZE) #constantly reads chunk of data from file
                 if not read_bytes: #checking if the bytes haven't ended up
                     break #if so, file transmitting is done, no more need to read
                 socket.sendall(read_bytes)
-                progressBar.update(len(read_bytes))
                 print("[+] File sent successfully")
+                progressBar.update(len(read_bytes))
         socket.close()
 
