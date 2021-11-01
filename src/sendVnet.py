@@ -32,6 +32,6 @@ opt = ha.handle_args()
 if opt.role == "sender":
     sender(opt.receiver_ip, opt.receiver_port, opt.file_name)
 elif opt.role == "receiver":
-    receiver()
+    receiver(opt.receiver_ip, opt.receiver_port)
 else:
     print("[!] Invalid argument value (sender/receiver)")

@@ -12,9 +12,9 @@ def handle_args():
     options, arguments = parser.parse_args() #ta funkcja zwraca wartosci ktore wpisal user dla -i, -p itd.
 
     if options.receiver_ip is None:
-        parser.error("[!] Set the IP Address for the receiver!")
+        parser.error("[!] Set the IP Address for the sender/receiver!")
     elif options.receiver_port is None:
-        parser.error("[!] Set the port for the receiver!")
+        parser.error("[!] Set the port for the sender/receiver!")
     elif options.file_name is None:
         if options.role == "receiver":
             pass
