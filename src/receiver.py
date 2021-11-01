@@ -23,7 +23,7 @@ def receiver(s_ip, s_pt):
         print(f"[+] {address[0]}:{address[1]} connected!")
         received = client_socket.recv(BUFFER_SIZE).decode()
     except OSError as er_msg:
-        print("[-] Unable to receive file")
+        print("[-] May be connected but unable to receive file")
     else:
         filename, filesize = received.split(SEPARATOR)
         filename = os.path.basename(filename) #removing absolute path if any
