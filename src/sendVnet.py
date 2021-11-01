@@ -3,9 +3,8 @@
 #which this functions contain. I decided to add a little more functionality to this such as parsing arguments,
 #handling with those values and showing list of availables ip's, showing yours either so you can see it all clearer.
 
-import handle_args as ha
-import sender
-import receiver
+from sender import *
+from receiver import *
 import sys_help as sh
 
 sh.clear()

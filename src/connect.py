@@ -9,7 +9,7 @@ def connect_to(r_ip, r_pt):
     r_pt = opt_s.receiver_port
     try:
         print(f"[*] Connecting to: {r_ip}:{r_pt}")
-        socket.connect((r_ip, r_pt))
+        socket.connect((r_ip, int(r_pt)))
     except socket.error as er_msg:
         print(f"[-] Unable to connect {er_msg}")
 

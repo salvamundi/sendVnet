@@ -11,9 +11,9 @@ def get_system_info():
 #works for "cls" and "clear" commands
 #I'm used to be comfortable with clear command more than with cls ;)
 def clear():
-    s_i = get_system_info()
+    os_name, os_ver = get_system_info()
 
-    if s_i.os_name == "Windows":
+    if os_name == "Windows":
         os.system("cls")
-    if s_i.os_name == "Linux":
+    if os_name == "Linux":
         os.system("clear")

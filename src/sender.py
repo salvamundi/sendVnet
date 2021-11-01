@@ -14,7 +14,7 @@ def sender(r_ip, r_pt, file_name):
     r_pt = opt_s.receiver_port
     file_name = opt_s.file_name
 
-    connect_to(r_ip, r_pt)
+    connect_to(r_ip, int(r_pt))
 
     file_name_size = os.path.getsize(file_name) #gets file size in bytes, thanks to that we can make nice looking progress bars
 
