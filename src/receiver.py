@@ -27,10 +27,13 @@ def receiver(s_ip, s_pt, s_ph):
         print("[-] May be connected but unable to receive file")
     else:
         filename, filesize = received.split(SEPARATOR)
-        if s_ph is not None:
-            filename = os.path.basename(s_ph + filename)
-        else:
-            filename = os.path.basename(filename) #removing absolute path if any
+        #if s_ph is not None:
+            #filename = os.path.basename(s_ph + filename)
+        #else:
+        #i decided to cut this off since it's not working properly
+        #I'm checking now if this is the reason why receiver is getting file with full path provided by sender if he sends the file
+        #not placed in the same directory as sendVnet.py
+        filename = os.path.basename(filename) #removing absolute path if any
 
         filesize = int(filesize)
         progressBar = tqdm.tqdm(range(filesize), f"[*] Receiving {filename}", unit="B", unit_scale=True,
