@@ -19,15 +19,16 @@ print("""
     !:!   :!:       :!:  !:!  :!:  !:!   ::!!:!   :!:  !:!  :!:         :!:    
 :::: ::    :: ::::   ::   ::   :::: ::    ::::     ::   ::   :: ::::     ::    
 :: : :    : :: ::   ::    :   :: :  :      :      ::    :   : :: ::      :     
-                                                                            v1.7.2
+                                                                            v1.8
 """)
 
-opt = ha.handle_args()
-if opt.role == "sender":
-    if opt.ddir is not None:
-        exit("[!] FUNC_ERR: Action not allowed!")
-    sender(opt.receiver_ip, opt.receiver_port, opt.file_name)
-elif opt.role == "receiver":
-    receiver(opt.receiver_ip, opt.receiver_port, opt.ddir)
-else:
-    print("[!] Invalid argument value (sender/receiver)")
+if __name__ == "__main__":
+    opt = ha.handle_args()
+    if opt.role == "sender":
+        if opt.ddir is not None:
+            exit("[!] FUNC_ERR: Action not allowed!")
+        sender(opt.receiver_ip, opt.receiver_port, opt.file_name)
+    elif opt.role == "receiver":
+        receiver(opt.receiver_ip, opt.receiver_port, opt.ddir)
+    else:
+        print("[!] Invalid argument value (sender/receiver)")

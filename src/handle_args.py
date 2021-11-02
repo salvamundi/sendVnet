@@ -20,7 +20,7 @@ def handle_args():
         if options.role == "receiver":
             pass
         else:
-            parser.error("[!] Don't forget about file name!")  # if role is sender*, only sender & receiver are meaningful values for this (roll) argument
+            parser.error("[!] Don't forget about file name!")  # if role is sender*, only sender & receiver are meaningful values for this (role) argument
     elif options.role is None:
         parser.error("[!] Don't forget about specifying if you are sending the file or receiving it")
     elif options.ddir is None:
