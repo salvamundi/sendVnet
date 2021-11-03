@@ -8,7 +8,7 @@ At this point I do not recommend using this to share files that contains fragile
 
 Program recognizes two types of users; sender and receiver.
 Sender needs to provide ip of the host, port the host is listening on and file name.
-Receiver on the other hand needs to specify the ip and port to listening on only.
+Receiver on the other hand needs to specify the ip and port to listening to only.
 
 Syntax of the program if sender:   python3 sendVnet.py -i/--ipaddress <ip_address> -p/--port <port> -f/--fname <filename> -r/--role sender
   
