@@ -23,8 +23,9 @@ def receiver(s_ip, s_pt, s_ph):
         client_socket, address = socket.accept()
         print(f"[+] {address[0]}:{address[1]} connected!")
         received = client_socket.recv(BUFFER_SIZE).decode()
-    except OSError as er_msg:
+    except OSError as OE_msg:
         print("[-] May be connected but unable to receive file")
+        print(f"[*] Error: {OE_msg}")
     else:
         filename, filesize = received.split(SEPARATOR)
         #if s_ph is not None:
@@ -37,17 +38,20 @@ def receiver(s_ip, s_pt, s_ph):
 
         filesize = int(filesize)
         progressBar = tqdm.tqdm(range(filesize), f"[*] Receiving {filename}", unit="B", unit_scale=True,
-                                unit_divisor=1024)
+                                unit_divisor=1024) #filename doesn't work for some reason
 
         with open(filename, "wb") as received_file:
-             while True:
-                read_bytes = client_socket.recv(BUFFER_SIZE)
-                if not read_bytes:
-                    break
-
-                received_file.write(read_bytes)
-                print("[+] File received successfully")
-                progressBar.update(len(read_bytes))
+            try:
+                while True:
+                    read_bytes = client_socket.recv(BUFFER_SIZE)
+                    if not read_bytes:
+                        break
+                    received_file.write(read_bytes)
+                    progressBar.update(len(read_bytes))
+            except InterruptedError as IE_msg:
+                 print(f"[-] Failed to receive data: {IE_msg}")
+            else:
+                 print("[+] File received successfully")
 
         client_socket.close()
         socket.close()

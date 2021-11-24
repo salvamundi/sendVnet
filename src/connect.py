@@ -10,7 +10,7 @@ def connect_to(r_ip, r_pt):
     try:
         print(f"[*] Connecting to: {r_ip}:{r_pt}")
         socket.connect((r_ip, int(r_pt)))
-    except socket.error as er_msg:
-        print(f"[-] Unable to connect {er_msg}")
+    except socket.error as ER_msg:
+        print(f"[-] Unable to connect: {ER_msg}")
 
     print(f"[+] Connection established")
